@@ -8,7 +8,7 @@ Please be respectful to others. Any offensive comments or less-than-helpful rema
 
 ## Issues
 
-Please allow some time for issues to be responded to. Buttercup is not our full-time occupation, so it may take some days for us to comment. Creators of issues should state clearly what they're requesting/reporting.
+Please allow some time for issues to be responded to. Artunis is not our full-time occupation, so it may take some days for us to comment. Creators of issues should state clearly what they're requesting/reporting.
 
 Issues that are unclear may be closed without notice.
 
