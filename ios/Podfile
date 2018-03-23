@@ -1,0 +1,36 @@
+platform :ios, '9.0'
+
+target 'Artunis' do
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+    pod 'React', path: '../node_modules/react-native', :subspecs => [
+      'Core',
+      'RCTActionSheet',
+      'RCTAnimation',
+      'RCTGeolocation',
+      'RCTImage',
+      'RCTLinkingIOS',
+      'RCTNetwork',
+      'RCTSettings',
+      'RCTText',
+      'RCTVibration',
+      'RCTWebSocket',
+      'tvOS',
+      'DevSupport'
+  ]
+
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+  pod 'react-native-notifications', path: '../node_modules/react-native-notifications'
+  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+  pod 'react-native-camera', path: '../node_modules/react-native-camera'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+      if target.name == 'yoga'
+          target.build_configurations.each do |config|
+              config.build_settings['GCC_TREAT_WARNINGS_AS_ERRORS'] = 'NO'
+              config.build_settings['GCC_WARN_64_TO_32_BIT_CONVERSION'] = 'NO'
+          end
+      end
+  end
+end
