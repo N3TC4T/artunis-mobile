@@ -1,5 +1,7 @@
 # Artunis Mobile
 
+[![Join the chat at https://gitter.im/artunis-mobile/Lobby](https://badges.gitter.im/artunis-mobile/Lobby.svg)](https://gitter.im/artunis-mobile/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![React-Native](https://img.shields.io/badge/react--native-0.52.0-green.svg)](https://facebook.github.io/react-native)
 [![Build Status](https://travis-ci.org/N3TC4T/artunis-mobile.svg?branch=master)](https://travis-ci.org/N3TC4T/artunis-mobile)
 [![Coverage Status](https://coveralls.io/repos/github/N3TC4T/artunis-mobile/badge.svg?branch=master)](https://coveralls.io/github/N3TC4T/artunis-mobile?branch=master)
