@@ -84,7 +84,7 @@ class AddContactView extends Component {
                 destinationTag,
             })
             .then(() => {
-                this.props.navigator.dismissModal();
+                this.props.navigator.pop();
             })
             .catch(error => {
                 Alert.show(error, {

@@ -24,6 +24,23 @@ global.crypto = {
     },
 };
 
+global.Error.captureStackTrace = Error.captureStackTrace || function (obj) {
+    obj.stack = [{ toString: null }];
+    if (Error.prepareStackTrace) {
+        const frame = {
+            isEval() { return false; },
+            getFileName() { return 'filename'; },
+            getLineNumber() { return 1; },
+            getColumnNumber() { return 1; },
+            getFunctionName() { return 'functionName'; },
+        };
+
+        obj.stack = Error.prepareStackTrace(obj, [frame, frame, frame]);
+    } else {
+        obj.stack = obj.stack || obj.name || 'Error';
+    }
+};
+
 YellowBox.disableYellowBox = true;
 YellowBox.ignoreWarnings([
     'Setting a timer',

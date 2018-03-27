@@ -35,6 +35,8 @@ export default function coreStateReducer(state = initialState, action = {}) {
             return state.set('marketPrice', fromJS(action.payload));
         case ActionTypes.SET_SCAN_RESULT:
             return state.set('scanResult', fromJS(action.payload));
+        case ActionTypes.CLEAR_SCAN_RESULT:
+            return state.set('scanResult', Map({}));
         default:
             return state;
     }

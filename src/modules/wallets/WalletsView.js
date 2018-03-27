@@ -146,7 +146,7 @@ class WalletsView extends Component {
     componentDidMount() {
         Alert.alert(
             'Warning',
-            'The App is running on XRP Test Network by default, Please DO NOT send real XRP to the wallets'
+            'The app by default running on XRP Test Network, Please DO NOT send real XRP to the wallets'
         );
     }
 

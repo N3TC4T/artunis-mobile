@@ -102,7 +102,7 @@ class ContactsView extends Component {
     };
 
     onAddPress = () => {
-        this.props.navigator.showModal({
+        this.props.navigator.push({
             screen: 'app.Contacts.AddContact',
             title: 'Add new contact',
             animationType: 'fade',

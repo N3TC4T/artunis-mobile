@@ -7,6 +7,7 @@ import { accountsSelector } from '@redux/modules/accounts/selectors';
 import { marketSelector, configSelector } from '@redux/modules/core/selectors';
 
 // Actions
+import * as CoreActions from '@redux/modules/core/actions';
 
 // The component we're mapping to
 import WalletSendView from './WalletSendView';
@@ -20,6 +21,8 @@ const mapStateToProps = state => ({
 });
 
 // Any actions to map to the component?
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    clearScanResult: CoreActions.clearScanResult,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletSendView);

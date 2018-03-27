@@ -65,3 +65,8 @@ export const setScanResult = result => ({
     type: ActionTypes.SET_SCAN_RESULT,
     payload: result,
 });
+
+export const clearScanResult = () => ({
+    type: ActionTypes.CLEAR_SCAN_RESULT,
+});
+

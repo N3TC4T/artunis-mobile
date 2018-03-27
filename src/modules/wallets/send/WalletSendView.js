@@ -5,6 +5,7 @@
 /**
  * Home Screen
  *  - Shows total balance and navigation's
+ *  - Shows wallets list
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -54,6 +55,7 @@ class WalletSendView extends Component {
         accounts: PropTypes.object.isRequired,
         market: PropTypes.object.isRequired,
         scanResult: PropTypes.object,
+        clearScanResult: PropTypes.func,
     };
 
     componentWillReceiveProps(nextProps) {
@@ -62,16 +64,25 @@ class WalletSendView extends Component {
         if (_.isUndefined(account)) {
             return;
         }
+
+        // if any detail of selected account updated
         if (!_.isEqual(_.get(accounts, account.address), account)) {
             this.setState({
                 account: _.get(accounts, account.address),
             });
         }
 
+        // if there is any scan result from main page
         if (Object.prototype.hasOwnProperty.call(scanResult, 'type')) {
+            // set the scanned recipient
             this.setState({
                 recipient: { ...this.state.recipient, ...scanResult.recipient },
             });
+
+            // clear president data
+            this.props.clearScanResult();
+
+            // update USD amount
             this.onChangeAmount(scanResult.amount);
         }
     }
