@@ -23,8 +23,6 @@
     "postinstall": "sh ./postinstall.sh",
     "update-snapshots": "yarn run test:unit -- -u"
   },
-  "precommit.silent": true,
-  "precommit": "yarn run test",
   "dependencies": {
     "bip39": "^2.5.0",
     "bufferutil": "^3.0.3",
@@ -49,7 +47,10 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
+    "ripple-bip32": "0.0.3",
+    "ripple-keypairs": "^0.10.1",
     "ripple-lib": "^0.17.9",
+    "ripple-sign-keypairs": "1.0.2",
     "sjcl": "^1.0.7",
     "socket.io": "^2.0.4",
     "text-encoding": "^0.6.4",

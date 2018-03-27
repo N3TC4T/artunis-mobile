@@ -20,9 +20,9 @@ export const Vault = {
     // Generate Secret Vault for storing the seed
     create: async (paperKeys: string, password: string): boolean => {
         const keyUnit8 = SHA256(password);
-        const seedEntropyUint8 = TextEncoding.toUnit8(PaperKey.toEntropy(paperKeys));
+        const seedHexUnit8 = TextEncoding.toUnit8(PaperKey.toSeedHex(paperKeys));
         const nonce = await randomBytes(secretbox.nonceLength);
-        const vault = await secretbox(seedEntropyUint8, nonce, keyUnit8);
+        const vault = await secretbox(seedHexUnit8, nonce, keyUnit8);
 
         // eslint-disable-next-line no-return-await
         return await Vault.save('seed', {
@@ -52,7 +52,7 @@ export const Vault = {
             }),
 
     // Use password to open Vault
-    open: async (type: string, password: string): Array<number> => {
+    open: async (type: string, password: string): string => {
         const encPassword = SHA256(password);
         const EncVault = await Vault.retrieve(type);
         const seed = await secretbox.open(
@@ -63,7 +63,7 @@ export const Vault = {
         if (!seed) {
             return false;
         }
-        return seed;
+        return TextEncoding.toString(seed);
     },
 
     // Delete Vault & Nonce from keychain

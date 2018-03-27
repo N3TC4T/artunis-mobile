@@ -4,11 +4,9 @@
 
 import bip39 from 'bip39';
 
-import _ from 'lodash';
-
 import React, { Component } from 'react';
 
-import { View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { View, Text, TextInput, StyleSheet, ScrollView } from 'react-native';
 
 // Const and Libs
 import { AppStyles, AppFonts, AppColors, AppSizes } from '@theme/';
@@ -21,19 +19,22 @@ const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
     },
-    row: {
-        left: 0,
-        right: 0,
-        flexDirection: 'row',
-        paddingHorizontal: AppSizes.padding,
-    },
     submitButtonText: {
         color: 'white',
         fontSize: 25,
         fontFamily: AppFonts.base.family,
     },
     input: {
+        height: AppSizes.screen.height * 0.3,
+        borderColor: AppColors.buttonPrimaryBorder,
+        borderBottomWidth: 1,
+        fontSize: 20,
+        lineHeight: 30,
+        padding: AppSizes.paddingSml,
         color: AppColors.textPrimary,
+        fontFamily: AppFonts.base.family,
+        backgroundColor: '#364150',
+        textAlignVertical: 'top',
     },
 });
 
@@ -54,32 +55,20 @@ class recoverPaperKeyView extends Component {
         super(props);
 
         this.state = {
-            paperKeys: new Array(12),
+            paperKeys: null,
         };
-
-        this.inputs = {};
     }
-
-    onInputChange = (index, text) => {
-        const { paperKeys } = this.state;
-        paperKeys.splice(index - 1, 1, text);
-        this.setState({
-            paperKeys,
-        });
-    };
 
     handleSubmit = () => {
         const { paperKeys } = this.state;
 
         // if any of items is undefined don't do anything
 
-        const mnemonic = paperKeys.join(' ');
-
-        if (bip39.validateMnemonic(mnemonic)) {
+        if (bip39.validateMnemonic(paperKeys)) {
             this.props.navigator.push({
                 screen: 'app.Recover.SetPassword',
                 title: 'Setup Password',
-                passProps: { mnemonic },
+                passProps: { mnemonic: paperKeys },
                 animationType: 'fade',
             });
         } else {
@@ -89,45 +78,24 @@ class recoverPaperKeyView extends Component {
         }
     };
 
-    handleTextSubmit = (index) => {
-        if (index === 12) {
-            this.handleSubmit();
-        } else {
-            this.inputs[index + 1].focus();
-        }
-    };
-
-    renderInputsRow = (from, to) =>
-        _.map(_.range(from, to + 1), index => (
-            <View style={AppStyles.flex1} key={index}>
-                <TextInput
-                    ref={input => {
-                        this.inputs[index] = input;
-                    }}
-                    underlineColorAndroid={AppColors.brand.secondary}
-                    placeholderTextColor={AppColors.textSecondary}
-                    onChangeText={text => this.onInputChange(index, text)}
-                    onSubmitEditing={() => { this.handleTextSubmit(index); }}
-                    blurOnSubmit={false}
-                    returnKeyType={index === 12 ? 'done' : 'next'}
-                    style={styles.input}
-                />
-                <Text style={[AppStyles.baseText, AppStyles.textCenterAligned]}>{index}</Text>
-            </View>
-        ));
 
     render() {
         return (
             <ScrollView contentContainerStyle={styles.container} style={[AppStyles.container, AppStyles.paddingTop]}>
                 <Spacer size={30} />
-                <View style={[AppStyles.flex6]}>
-                    <View style={[AppStyles.row, AppStyles.padding]}>
-                        <Text style={AppStyles.baseText}>Enter the paper key for the wallet you want to recover.</Text>
-                    </View>
-                    <View style={[styles.row]}>{this.renderInputsRow(1, 3)}</View>
-                    <View style={[styles.row]}>{this.renderInputsRow(4, 6)}</View>
-                    <View style={[styles.row]}>{this.renderInputsRow(7, 9)}</View>
-                    <View style={[styles.row]}>{this.renderInputsRow(10, 12)}</View>
+                <View style={[AppStyles.flex6, AppStyles.padding]}>
+                    <Text style={AppStyles.baseText}>
+                        Enter the paper key for the wallet you want to recover ( USUALLY 24 WORDS )
+                    </Text>
+                    <Spacer size={30} />
+                    <TextInput
+                        style={[styles.input]}
+                        onChangeText={(paperKeys) => this.setState({ paperKeys })}
+                        multiline
+                        underlineColorAndroid="transparent"
+                        autoCorrect
+                        autoFocus
+                    />
                 </View>
                 <View style={[AppStyles.flex1, AppStyles.padding]}>
                     <Button

@@ -57,8 +57,8 @@ class setupCompleteView extends Component {
 
         this.setState({ isLoading: true });
 
-        await coreInitialize().then(() => {
-            createWallet().then(() => {
+        await coreInitialize().then(async () => {
+            await createWallet().then(() => {
                 coreBoot();
             });
         });

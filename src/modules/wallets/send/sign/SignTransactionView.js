@@ -17,7 +17,7 @@ import { PasswordInput, LoadingIndicator } from '@components/';
 
 import { Vault } from '@libs/vault';
 import { Secret } from '@libs/crypto';
-import { signTransaction, getKeyPairsFromSeed } from '@libs/ripple';
+import { signTransaction, getKeyPairsFromSeed, getKeyPairsFromSecret } from '@libs/ripple';
 
 import * as Animatable from 'react-native-animatable';
 
@@ -80,16 +80,16 @@ class RecipientPickerView extends Component {
         if (!seed) {
             this.view.shake(800);
         } else {
-            let accountSecret = '';
+            let keyPairs = {};
             // Check if account has secret is not then it's Main Wallet
             if (Object.prototype.hasOwnProperty.call(accountBasics, 'secret')) {
-                accountSecret = await Secret.decrypt(accountBasics.secret, seed);
+                const secret = await Secret.decrypt(accountBasics.secret, seed);
+                keyPairs = getKeyPairsFromSecret(secret);
             } else {
-                const { secret } = getKeyPairsFromSeed(seed);
-                accountSecret = secret;
+                keyPairs = getKeyPairsFromSeed(seed);
             }
 
-            const signedTransaction = await signTransaction(transaction.txJSON, accountSecret);
+            const signedTransaction = await signTransaction(transaction.txJSON, keyPairs);
             this.props.onSign(signedTransaction);
             this.props.navigator.dismissLightBox();
         }
