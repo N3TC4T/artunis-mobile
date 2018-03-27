@@ -31,8 +31,8 @@
     "immutable": "^3.8.2",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "react": "16.2.0",
-    "react-native": "0.52.0",
+    "react": "^16.3.0-alpha.1",
+    "react-native": "0.54.3",
     "react-native-animatable": "^1.2.4",
     "react-native-camera": "^1.0.2",
     "react-native-device-info": "^0.16.0",
@@ -87,7 +87,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "^1.11.1",
     "react-native-cli": "^2.0.1",
-    "react-test-renderer": "^16.2.0",
+    "react-test-renderer": "^16.3.0-alpha.1",
     "remote-redux-devtools": "^0.5.12"
   },
   "jest": {

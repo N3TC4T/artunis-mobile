@@ -1,6 +1,6 @@
 # Artunis Mobile
 
-[![React-Native](https://img.shields.io/badge/react--native-0.52.0-green.svg)](https://facebook.github.io/react-native)
+[![React-Native](https://img.shields.io/badge/react--native-0.54.3-green.svg)](https://facebook.github.io/react-native)
 [![Build Status](https://travis-ci.org/N3TC4T/artunis-mobile.svg?branch=master)](https://travis-ci.org/N3TC4T/artunis-mobile)
 [![Coverage Status](https://coveralls.io/repos/github/N3TC4T/artunis-mobile/badge.svg?branch=master)](https://coveralls.io/github/N3TC4T/artunis-mobile?branch=master)
 [![Join the chat at https://gitter.im/artunis-mobile/Lobby](https://badges.gitter.im/artunis-mobile/Lobby.svg)](https://gitter.im/artunis-mobile/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -8,7 +8,6 @@
 
 Artunis Mobile is the XRP wallet supporting both iOS and Android.
 
-> The app already is on "Alpha" stage and isn't ready as a production release.
 
 ## Get the app
 
